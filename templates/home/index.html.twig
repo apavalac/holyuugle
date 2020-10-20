@@ -1,0 +1,39 @@
+{% extends('base.html.twig') %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="css/styles.css">
+{% endblock %}
+
+{% block body %}
+    <div class="h-100 row align-items-center">
+        <div class="container text-center">
+            <div class="col">
+                <div class="h-100 row align-items-center">
+                    <div class="container text-center">
+                        <div class="col">
+                            <h1 class="logo"><span class="blue">Holi</span><span class="red">u</span><span
+                                        class="yellow">u</span><span class="blue">g</span><span
+                                        class="yellow">l</span><span class="red">e</span></h1>
+                            <form action="/search" method="post" class="navbar-form" role="search">
+                                <div class="input-group">
+                                    <select class="form-control" id="country" name="country">
+                                        {% for country in supported %}
+                                            <option value="{{ country[0] }}">{{ country[1] }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <input type="number" class="col-4 col-md-2 form-control" placeholder="Year" name="year"
+                                           required>
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit"><i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
