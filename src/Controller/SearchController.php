@@ -160,6 +160,13 @@ class SearchController extends AbstractController
             if($date2 - $date1 == $dayDiference)
             {
                 $current++;
+
+                if($i == count($json) - 2   )
+                {
+                    if($current > $max)
+                        $max = $current;
+                    $current = 1;
+                }
             }
             else
             {
