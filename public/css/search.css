@@ -1,27 +1,136 @@
-.holi-name {
-    font-size: 3rem;
+
+.navbar-brand {
+    font-size: 24pt;
 }
 
-.holi-name-en {
-    font-size: 2rem;
+.holi-list {
+    list-style: none;
+    font-family: 'Lato', sans-serif;
 }
 
-.card-body .card-date {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #dfdfdf;
+.holi-list > li {
+    background-color: rgb(255, 255, 255);
+    padding: 0px;
+    margin: 0px 0px 20px;
 }
 
-.card-body .card-date:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+.time {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
 }
 
-@media only screen and (max-width: 600px) {
-    .holi-name {
-        font-size: 1.5rem;
+.info {
+    padding: 10px;
+}
+
+.day {
+    display: block;
+    font-size: 56pt;
+    font-weight: 100;
+    line-height: 1;
+}
+
+.month h2 {
+    display: block;
+    font-size: 24pt;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.holi-list > li > .info {
+    padding-top: 5px;
+    text-align: left;
+}
+
+.holi-list > li > .info > h2 {
+    font-size: 17pt;
+    font-weight: 700;
+    margin: 0px;
+}
+
+.holi-list > li > .info > .en {
+    font-size: 13pt;
+    font-weight: 300;
+    margin: 0px;
+}
+
+.holi-list {
+    border-bottom: 1px solid black;
+}
+
+
+:focus {
+    outline: none;
+}
+
+
+.blue {
+    color: #4285f4;
+}
+
+.red {
+    color: #EA4335;
+}
+
+.yellow {
+    color: #FBBC05;
+}
+
+.green {
+    color: #34A853;
+}
+
+.form-control:focus
+{
+    box-shadow: 0px 0px 10px 0px black;
+}
+
+.card-body {
+    text-align: center;
+}
+
+@media only screen and (max-width: 1100px) {
+    .time {
+        text-align: left;
+        width: 100%;
     }
 
-    .holi-name-en {
+    .day {
+        display: inline-block;
+        font-size: 24pt;
+        font-weight: 100;
+    }
+
+    .month h2 {
+        display: inline-block;
+        font-size: 14pt;
+        font-weight: 900;
+    }
+
+    .info {
+        padding: 0px;
+    }
+
+    .info {
         font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 767px)
+{
+    .clear {
+        display: none;
+    }
+
+    .day {
+        font-size: 24pt;
+        font-weight: 100;
+    }
+
+    .month h2 {
+        display: inline-block;
+        font-size: 14pt;
+        font-weight: 400;
     }
 }

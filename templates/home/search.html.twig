@@ -5,53 +5,100 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="card mb-4">
-            <div class="card-body">
-                <form action="/search" method="post" class="navbar-form" role="search">
-                    <div class="input-group">
-                        <select class="form-control" id="country" name="country">
-                            {% for country in supported %}
-                                <option value="{{ country[0] }}">{{ country[1] }}</option>
-                            {% endfor %}
-                        </select>
-                        <input type="number" class="col-3 form-control" placeholder="Year" name="year" required>
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <h2>Totay is a: {{ currentDay }}</h2>
-        <div class="card mb-md-4">
-            <div class="card-body">
-                {% if holidaysCount > 0 %}
-                    <p class="card-date">{{ holidaysCount }} holidays</p>
-                    <p class="card-date">Max holidays in a row = {{ maxHolidays }}</p>
-                {% else %}
-                    <p class="card-date mt-2">Wrong year range or something else!</p>
-                {% endif %}
-            </div>
-        </div>
-        {% for month in monthsDays %}
-            {# Getting the current month #}
-            {% for key,value in monthsDays %}
-                {% if value == month %}
-                    <h2>{{ months[key + 1] }}</h2>
-                {% endif %}
-            {% endfor %}
-            <div class="card mb-md-4">
-                <div class="card-body">
-                    {% for day in month %}
-                        <p class="holi-name">{{ day['name'][0]['text'] }}</p>
-                        <p class="holi-name-en">[{{ day['name'][1]['text'] }}]</p>
-                        <p class="card-date">{{ day['date']['day'] }}/{{ day['date']['month'] }}/{{ day['date']['year'] }}</p>
+    <nav class="navbar navbar-light bg-light mb-4">
+        <a href="/" class="navbar-brand"><span class="blue">Holi</span><span class="red">u</span><span
+                    class="yellow">u</span><span class="blue">g</span><span
+                    class="yellow">l</span><span class="red">e</span></a>
+        <form action="/search" method="post" class="form-inline" role="search">
+            <div class="input-group">
+                <select class="form-control" id="country" name="country">
+                    {% for country in supported %}
+                        <option value="{{ country[0] }}">{{ country[1] }}</option>
                     {% endfor %}
+                </select>
+                <input type="number" class="col-3 form-control" placeholder="Year" name="year" required>
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
                 </div>
             </div>
-        {% endfor %}
+        </form>
+    </nav>
+    <div class="container">
 
+        <div class="row mb-4">
+
+            {% if holidaysCount > 0 %}
+                <div class="col-12 col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>Today</h2>
+                            <p>{{ currentDay }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>{{ holidaysCount }}</h2>
+                            <p>Holidays</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>{{ maxHolidays }}</h2>
+                            <p>Max holidays in a row</p>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>Today</h2>
+                            <p>{{ currentDay }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-date mt-2">This country supports years from {{ minLimit[4] }}! </p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+        {% for month in monthsDays %}
+            <ul class="holi-list">
+
+                {% for day in month %}
+                    <li>
+                        <div class="row">
+                            <div class="col-md-1 col-12">
+                                <div class="time">
+                                    <span class="day">{{ day['date']['day'] }}</span>
+                                    <span class="month">
+                                                <h2>{{ months[day['date']['month']] }}</h2>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-1 clear">
+
+                            </div>
+                            <div class="col-md-10 col-12">
+                                <div class="info">
+                                    <h2>{{ day['name'][0]['text'] }}</h2>
+                                    <p class="en">{{ day['name'][1]['text'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        {% endfor %}
     </div>
 {% endblock %}

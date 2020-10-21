@@ -33,6 +33,7 @@ class SearchController extends AbstractController
      */
     public function index(Request $request)
     {
+        $minLimit = [];
         // Check if record is already in db if not call API
         if($this->dataExists($request->request->get('country'), $request->request->get('year')))
         {
@@ -58,6 +59,10 @@ class SearchController extends AbstractController
                 // Record data
                 $this->createRecord($request->request->get('country'), $request->request->get('year'), $data);
             }
+            else
+            {
+                $minLimit = explode(' ', $data['error']);
+            }
         }
 
         // Get all holidays grouped by month
@@ -73,6 +78,7 @@ class SearchController extends AbstractController
         $maxim = $this->getMaxSequence($data);
 
         return $this->render('/home/search.html.twig', [
+            'minLimit' => $minLimit,
             'maxHolidays' => $maxim,
             'holidaysCount' => $holidays,
             'currentDay' => $status,
