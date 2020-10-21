@@ -33,6 +33,12 @@ class SearchController extends AbstractController
      */
     public function index(Request $request)
     {
+
+        if($request->request->get('country') == null)
+        {
+            return $this->redirect('/');
+        }
+
         $minLimit = [];
         // Check if record is already in db if not call API
         if($this->dataExists($request->request->get('country'), $request->request->get('year')))
